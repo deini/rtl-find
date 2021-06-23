@@ -9,14 +9,13 @@ afterEach(() => {
 })
 
 test('Renders', async () => {
-  // Fails with both legacy / modern
   jest.useFakeTimers();
 
   render(<Button />)
 
   // Looking for a role that doesn't exist with a long timeout
-  // This should wait for 10 seconds but fails instantly with fake timers
-  const button = await screen.findByRole('dialog', {}, { timeout: 10000 });
+  // This should wait for 5 seconds, works on v11
+  const button = await screen.findByRole('dialog', {}, { timeout: 5000 });
 
   expect(button).toBeInTheDocument();
 });
